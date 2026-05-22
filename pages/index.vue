@@ -1,83 +1,220 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
+  <div class="container">
+    <div v-if="loading">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 97.4vh;
+        "
+      >
+        <img
+          src="/img/loading.gif"
+          alt="Loading..."
+          style="display: block; width: 150px; mix-blend-mode: multiply"
+        />
+      </div>
+    </div>
+
+    <div v-else-if="error">{{ error }}</div>
+
+    <div v-else>
+      <div style="display: flex; justify-content: center">
+        <h2>📅 Schedule</h2>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-bottom: 10px; margin-top: 10px;">
+        <span style="padding: 10px; background: #0772BA; border-radius: 8px; color: white;">
+         {{ dayName }} ທີ່: {{ schedule.date }}
+        </span>
+      </div>
+
+      <div class="section1">
+        <h3>✅ Monitoring Today</h3>
+        <div v-if="schedule.today.count === 0">
+          <p>⛱️ພັກວຽກ</p>
+        </div>
+        <div v-else>
+          <v-row class="pa-1">
+            <v-col
+              v-for="(name, i) in schedule.today.names"
+              :key="i"
+              class="pa-1"
+              cols="6"
             >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
+              <v-card style="border-radius: 15px">
+                <v-card-text>
+                  <div style="display: flex; justify-content: center">
+                    <img
+                      :src="$staffImage(name)"
+                      style="border-radius: 50%; width: 120px"
+                    />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: center;
+                      margin-top: 8px;
+                    "
+                  >
+                    <b style="color: green; font-size: 12pt;">{{ name }}</b>
+                  </div>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </div>
+      </div>
+
+      <div class="section2">
+        <h3>⏭️ Next Day</h3>
+        <div v-if="schedule.nextDay.count === 0">
+          <p>⛱️ພັກວຽກ</p>
+        </div>
+        <div v-else>
+          <v-card
+            v-for="(name, i) in schedule.nextDay.names"
+            :key="i"
+            class="mb-2"
+            style="border-radius: 15px"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
+            <v-card-text>
+              <b style="color: black">{{ name }}</b>
+            </v-card-text>
+          </v-card>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center">
+        <v-btn @click="refresh" color="#0772BA" elevation="0" dark>
+          <v-icon>mdi-refresh</v-icon> Refresh
+        </v-btn>
+      </div>
+
+      <div class="section3 mt-4">
+        <h3>🧑‍💼 All monitoring staff ({{ schedule.allStaff.count }})</h3>
+        <div v-if="schedule.allStaff.count === 0">
+          <p>ບໍ່ມີຂໍ້ມູນ</p>
+        </div>
+        <div v-else>
+          <v-card
+            v-for="(item, i) in schedule.allStaff.staff"
+            :key="i"
+            class="mb-2"
+            style="border-radius: 15px"
           >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+            <v-card-text>
+              <div style="display: flex; align-items: center">
+                <img
+                  :src="$staffImage(item.name)"
+                  style="border-radius: 50%; width: 80px; flex-shrink: 0"
+                />
+                <div class="ml-4">
+                  <span style="font-size: 12pt;"><b>{{ item.name }}</b></span>
+                  <br />
+                  <span style="color: gray; font-size: 13px">{{
+                    item.description
+                  }}</span>
+                </div>
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from 'axios'
+
+const APPS_SCRIPT_URL =
+  'https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRPGTvrUD64XUxrR-JzFkkdXphVhC_cm3uTa6g27DMYh4Yp5jWtt4igxH7-22NuFSoIYapyIYLxSlxp8PVascxHurrcyj6U37bGSYx1yTdojpkZdAu1T-48BI-ok2NOul9zVwM6PKWnwCPjfstx1mlKQFZvFgnQsdYMuke8kHWIcICdKi5QLv36JRGEQGkFVW-AGQbhW_ddYNxPr5WYFbhT-a2kx7DFuPZKJ-CHaAFfzcRHSe-HORQNfY8INHK-Q018xbm2H-DWJhca2YY&lib=MnzoDS8BQOsjp9pgS_EWMIi0dx0bejefQ'
+
 export default {
-  name: 'IndexPage'
+  data() {
+    return {
+      loading: false,
+      error: null,
+      schedule: {
+        date: '',
+        today: { count: 0, names: [] },
+        nextDay: { count: 0, names: [] },
+        allStaff: { count: 0, staff: [] },
+      },
+    }
+  },
+
+  computed: {
+    dayName() {
+      const days = [
+        'ວັນອາທິດ',
+        'ວັນຈັນ',
+        'ວັນອັງຄານ',
+        'ວັນພຸດ',
+        'ວັນພະຫັດ',
+        'ວັນສຸກ',
+        'ວັນເສົາ',
+      ]
+      return days[new Date().getDay()]
+    },
+  },
+
+  async mounted() {
+    await this.fetchSchedule()
+  },
+
+  methods: {
+    async fetchSchedule() {
+      if (this.loading) return
+      this.loading = true
+      this.error = null
+      try {
+        const { data } = await axios.get(APPS_SCRIPT_URL)
+        this.schedule = data
+      } catch (e) {
+        this.error = 'Failed to load schedule'
+      } finally {
+        this.loading = false
+      }
+    },
+
+    refresh() {
+      this.fetchSchedule()
+    },
+  },
 }
 </script>
+
+<style scoped>
+.container {
+  max-width: 500px;
+  font-family: Arial, sans-serif;
+  background: #fffcf9;
+}
+.section1 {
+  background: #e9ffe8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.section2 {
+  background: #e0f7fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.section3 {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+h2 {
+  color: #333;
+}
+h3 {
+  margin: 0 0 10px;
+}
+</style>
