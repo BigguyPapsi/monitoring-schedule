@@ -20,55 +20,74 @@
     <div v-else-if="error">{{ error }}</div>
 
     <div v-else class="mt-5">
-
       <div style="display: flex; justify-content: center">
-       <img src="/img/itx-logo.png" alt="ITX Logo" style="width: 120px;"/>
+        <img src="/img/itx-log-full.png" alt="ITX Logo" style="width: 150px" />
       </div>
 
-      <div style="display: flex; justify-content: center">
+      <div style="display: flex; justify-content: center; color: #001f3f">
         <h2>ITX - Schedule</h2>
       </div>
 
-      <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-        <span style="padding: 10px; background: #0772BA; border-radius: 8px; color: white;">
-         {{ dayName }} ທີ່: {{ schedule.date }}
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          margin-bottom: 10px;
+          margin-top: 10px;
+        "
+      >
+        <span
+          style="
+            padding: 10px;
+            background: #0772ba;
+            border-radius: 8px;
+            color: white;
+          "
+        >
+          {{ dayName }} ທີ່: {{ schedule.date }}
         </span>
       </div>
 
       <div class="section1">
-        <h3>✅ Monitoring Today</h3>
-        <div v-if="schedule.today.count === 0">
-          <p>⛱️ພັກວຽກ</p>
+        <div class="title">
+          <v-icon color="#fff">mdi-pin</v-icon>
+          <h4>Monitoring Today</h4>
         </div>
-        <div v-else>
-          <v-row class="pa-1">
-            <v-col
-              v-for="(name, i) in schedule.today.names"
-              :key="i"
-              class="pa-1"
-              cols="6"
-            >
-              <v-card style="border-radius: 15px">
-                <v-card-text>
-                  <div style="display: flex; justify-content: center">
-                    <img
-                      :src="$staffImage(name)"
-                      style="border-radius: 50%; width: 120px"
-                    />
-                  </div>
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      margin-top: 8px;
-                    "
-                  >
-                    <b style="color: green; font-size: 12pt;">{{ name }}</b>
-                  </div>
-                </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
+
+        <div class="pa-5">
+          <div v-if="schedule.today.count === 0">
+            <p>⛱️ພັກວຽກ</p>
+          </div>
+          <div v-else>
+            <v-row class="pa-1">
+              <v-col
+                v-for="(name, i) in schedule.today.names"
+                :key="i"
+                class="pa-1"
+                cols="6"
+              >
+                <v-card style="border-radius: 15px">
+                  <v-card-text>
+                    <div style="display: flex; justify-content: center">
+                      <img
+                        :src="$staffImage(name)"
+                        style="border-radius: 50%; width: 120px"
+                      />
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 8px;
+                      "
+                    >
+                      <b style="color: green; font-size: 12pt">{{ name }}</b>
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </div>
         </div>
       </div>
 
@@ -116,7 +135,9 @@
                   style="border-radius: 50%; width: 80px; flex-shrink: 0"
                 />
                 <div class="ml-4">
-                  <span style="font-size: 12pt;"><b>{{ item.name }}</b></span>
+                  <span style="font-size: 12pt"
+                    ><b>{{ item.name }}</b></span
+                  >
                   <br />
                   <span style="color: gray; font-size: 13px">{{
                     item.description
@@ -132,9 +153,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
-const APPS_SCRIPT_URL ='https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRPGTvrUD64XUxrR-JzFkkdXphVhC_cm3uTa6g27DMYh4Yp5jWtt4igxH7-22NuFSoIYapyIYLxSlxp8PVascxHurrcyj6U37bGSYx1yTdojpkZdAu1T-48BI-ok2NOul9zVwM6PKWnwCPjfstx1mlKQFZvFgnQsdYMuke8kHWIcICdKi5QLv36JRGEQGkFVW-AGQbhW_ddYNxPr5WYFbhT-a2kx7DFuPZKJ-CHaAFfzcRHSe-HORQNfY8INHK-Q018xbm2H-DWJhca2YY&lib=MnzoDS8BQOsjp9pgS_EWMIi0dx0bejefQ'
+const APPS_SCRIPT_URL =
+  "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRPGTvrUD64XUxrR-JzFkkdXphVhC_cm3uTa6g27DMYh4Yp5jWtt4igxH7-22NuFSoIYapyIYLxSlxp8PVascxHurrcyj6U37bGSYx1yTdojpkZdAu1T-48BI-ok2NOul9zVwM6PKWnwCPjfstx1mlKQFZvFgnQsdYMuke8kHWIcICdKi5QLv36JRGEQGkFVW-AGQbhW_ddYNxPr5WYFbhT-a2kx7DFuPZKJ-CHaAFfzcRHSe-HORQNfY8INHK-Q018xbm2H-DWJhca2YY&lib=MnzoDS8BQOsjp9pgS_EWMIi0dx0bejefQ";
 
 export default {
   data() {
@@ -142,56 +164,56 @@ export default {
       loading: false,
       error: null,
       schedule: {
-        date: '',
+        date: "",
         today: { count: 0, names: [] },
         nextDay: { count: 0, names: [] },
         allStaff: { count: 0, staff: [] },
       },
-    }
+    };
   },
 
   computed: {
     dayName() {
       const days = [
-        'ວັນອາທິດ',
-        'ວັນຈັນ',
-        'ວັນອັງຄານ',
-        'ວັນພຸດ',
-        'ວັນພະຫັດ',
-        'ວັນສຸກ',
-        'ວັນເສົາ',
-      ]
-      return days[new Date().getDay()]
+        "ວັນອາທິດ",
+        "ວັນຈັນ",
+        "ວັນອັງຄານ",
+        "ວັນພຸດ",
+        "ວັນພະຫັດ",
+        "ວັນສຸກ",
+        "ວັນເສົາ",
+      ];
+      return days[new Date().getDay()];
     },
   },
 
   async mounted() {
-    await this.fetchSchedule()
+    await this.fetchSchedule();
   },
 
   methods: {
     async fetchSchedule() {
-      if (this.loading) return
-      this.loading = true
-      this.error = null
+      if (this.loading) return;
+      this.loading = true;
+      this.error = null;
       try {
-        const { data } = await axios.get(APPS_SCRIPT_URL)
-        this.schedule = data
+        const { data } = await axios.get(APPS_SCRIPT_URL);
+        this.schedule = data;
       } catch (e) {
-        this.error = 'Failed to load schedule'
+        this.error = "Failed to load schedule";
       } finally {
-        this.loading = false
+        this.loading = false;
       }
     },
 
     refresh() {
-      this.fetchSchedule()
+      this.fetchSchedule();
     },
   },
-}
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   max-width: 500px;
   font-family: Arial, sans-serif;
@@ -199,9 +221,17 @@ export default {
 }
 .section1 {
   background: #e9ffe8;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 18px;
   margin-bottom: 16px;
+  border: 1px solid #047a20;
+  .title {
+    display: flex;
+    color: #fff;
+    border-radius: 17px 0px 17px 0px;
+    background-color: #047a20;
+    padding: 5px 10px;
+    width: 60%;
+  }
 }
 .section2 {
   background: #e0f7fa;
