@@ -19,7 +19,7 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else>
+    <div v-else class="mt-7">
       <div style="display: flex; justify-content: center">
         <h2>📅 Schedule</h2>
       </div>

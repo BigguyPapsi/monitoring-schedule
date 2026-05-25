@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Test-project',
-    title: 'Test-project',
+    titleTemplate: '%s - Schedule',
+    title: 'ITX',
     htmlAttrs: {
       lang: 'en'
     },
@@ -21,7 +21,8 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/img/itx-logo.png' }
     ]
   },
 
