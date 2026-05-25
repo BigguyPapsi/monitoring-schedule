@@ -19,12 +19,17 @@
 
     <div v-else-if="error">{{ error }}</div>
 
-    <div v-else class="mt-7">
+    <div v-else class="mt-5">
+
       <div style="display: flex; justify-content: center">
-        <h2>📅 Schedule</h2>
+       <img src="/img/itx-logo.png" alt="ITX Logo" style="width: 120px;"/>
       </div>
 
-      <div style="display: flex; justify-content: center; margin-bottom: 10px; margin-top: 10px;">
+      <div style="display: flex; justify-content: center">
+        <h2>ITX - Schedule</h2>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-bottom: 10px;">
         <span style="padding: 10px; background: #0772BA; border-radius: 8px; color: white;">
          {{ dayName }} ທີ່: {{ schedule.date }}
         </span>
@@ -129,8 +134,7 @@
 <script>
 import axios from 'axios'
 
-const APPS_SCRIPT_URL =
-  'https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRPGTvrUD64XUxrR-JzFkkdXphVhC_cm3uTa6g27DMYh4Yp5jWtt4igxH7-22NuFSoIYapyIYLxSlxp8PVascxHurrcyj6U37bGSYx1yTdojpkZdAu1T-48BI-ok2NOul9zVwM6PKWnwCPjfstx1mlKQFZvFgnQsdYMuke8kHWIcICdKi5QLv36JRGEQGkFVW-AGQbhW_ddYNxPr5WYFbhT-a2kx7DFuPZKJ-CHaAFfzcRHSe-HORQNfY8INHK-Q018xbm2H-DWJhca2YY&lib=MnzoDS8BQOsjp9pgS_EWMIi0dx0bejefQ'
+const APPS_SCRIPT_URL ='https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRPGTvrUD64XUxrR-JzFkkdXphVhC_cm3uTa6g27DMYh4Yp5jWtt4igxH7-22NuFSoIYapyIYLxSlxp8PVascxHurrcyj6U37bGSYx1yTdojpkZdAu1T-48BI-ok2NOul9zVwM6PKWnwCPjfstx1mlKQFZvFgnQsdYMuke8kHWIcICdKi5QLv36JRGEQGkFVW-AGQbhW_ddYNxPr5WYFbhT-a2kx7DFuPZKJ-CHaAFfzcRHSe-HORQNfY8INHK-Q018xbm2H-DWJhca2YY&lib=MnzoDS8BQOsjp9pgS_EWMIi0dx0bejefQ'
 
 export default {
   data() {
