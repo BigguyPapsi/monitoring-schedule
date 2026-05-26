@@ -1,40 +1,59 @@
 <template>
-  <div v-if="loading" style="background-color: aliceblue; height: 100vh">
+  <div style="background-color: #fffcf9">
+    <div v-if="loading" style="background-color: aliceblue; height: 100vh">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 97.4vh;
+        "
+      >
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
+    </div>
+
     <div
+      v-else-if="error"
       style="
+        background-color: aliceblue;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 97.4vh;
+        height: 100vh;
       "
     >
-      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      {{ error }}
     </div>
-  </div>
 
-  <div
-    v-else-if="error"
-    style="
-      background-color: aliceblue;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    "
-  >
-    {{ error }}
-  </div>
+    <div v-else>
+      <Nav />
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 50px;
 
-  <div v-else class="container">
-    <Nav />
+        "
+      >
+        <div>
+          <v-container>
+            <img
+              :src="schedule?.img_url"
+              alt="schedule"
+              style="width: 100%; border-radius: 12px"
+            />
 
-    <Today :data="schedule" :dayName="dayName" />
-
-    <Nextday :data="schedule" />
-
-    <Allstaff :data="schedule" />
-
-    <Navbottom />
+            <Viewall :data="schedule"/>
+          </v-container>
+        </div>
+      </div>
+      <Navbottom />
+    </div>
   </div>
 </template>
 
@@ -53,6 +72,7 @@ export default {
       error: null,
 
       schedule: {
+        img_url: "",
         date: "",
         today: {
           count: 0,
@@ -145,11 +165,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.container {
-  padding: 0px;
-  max-width: 500px;
-  background: #fffcf9;
-  margin-bottom: 60px;
-}
-</style>
+<style lang="scss" scoped></style>

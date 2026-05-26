@@ -4,6 +4,11 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  server: {
+    port: 3000, // default: 3000
+    host: "0.0.0.0"
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
   router: {
@@ -18,14 +23,25 @@ export default {
     },
     meta: [
       { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+      },
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [
       // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      { rel: "icon", type: "image/x-icon", href: "/monitoring-schedule/itx-logo.png" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/monitoring-schedule/itx-logo.png",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap",
+      },
     ],
   },
 
