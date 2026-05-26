@@ -10,7 +10,7 @@
         "
       >
         <img
-          src="/img/loading.gif"
+          src="@/assets/img/loading.gif"
           alt="Loading..."
           style="display: block; width: 150px; mix-blend-mode: multiply"
         />
@@ -21,7 +21,7 @@
 
     <div v-else class="mt-5">
       <div style="display: flex; justify-content: center">
-        <img src="/img/itx-log-full.png" alt="ITX Logo" style="width: 150px" />
+        <img src="@/assets/img/itx-logo-full.png" alt="ITX Logo" style="width: 150px" />
       </div>
 
       <div style="display: flex; justify-content: center; color: #001f3f">
