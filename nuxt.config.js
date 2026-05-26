@@ -24,7 +24,7 @@ export default {
     ],
     link: [
       // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      { rel: "icon", type: "image/x-icon", href: "/itx-logo.png" },
+      { rel: "icon", type: "image/x-icon", href: "/monitoring-schedule/itx-logo.png" },
     ],
   },
 
