@@ -7,7 +7,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
   router: {
-    base: "/monitoring-schedule/",
+    base: process.env.NODE_ENV === "production" ? "/monitoring-schedule/" : "/",
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
