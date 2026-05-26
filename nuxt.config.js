@@ -25,6 +25,7 @@ export default {
     link: [
       // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       { rel: "icon", type: "image/x-icon", href: "/monitoring-schedule/itx-logo.png" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;700&display=swap" },
     ],
   },
 

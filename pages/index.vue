@@ -230,7 +230,7 @@ export default {
     border-radius: 17px 0px 17px 0px;
     background-color: #047a20;
     padding: 5px 10px;
-    width: 60%;
+    width: auto;
   }
 }
 .section2 {
