@@ -7,7 +7,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
   router: {
-    base: "/itx-schedule/",
+    base: "/monitoring-schedule/",
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
