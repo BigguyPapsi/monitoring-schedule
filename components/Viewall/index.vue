@@ -6,6 +6,7 @@
       </div>
       <div>
         <v-card
+        @click="openDialogData(staff)"
           elevation="0"
           v-for="(staff, i) in data?.allStaff?.staff"
           :key="i"
@@ -46,10 +47,26 @@
                   <div>{{ staff?.description }}</div>
                 </div>
               </div>
-              <div>{{ staff?.tel }}</div>
+              <!-- <div>{{ staff?.tel }}</div> -->
+              <div><v-icon>mdi-chevron-right</v-icon></div>
             </div>
           </v-card-text>
         </v-card>
+
+        <div>
+          <v-dialog v-model="dialog" max-width="500px">
+            <v-card>
+              <v-card-title class="headline">Staff on Duty</v-card-title>
+              <v-card-text>{{ dialogText }}</v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="dialog = false"
+                  >Close</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+            </v-dialog>
+        </div>
       </div>
     </v-container>
   </div>
@@ -57,6 +74,22 @@
 
 <script>
 export default {
+data() {
+    return {
+      dialog: false,
+      dialogText: "",
+    };
+  },
+
+  methods: {
+    openDialogData(staff) {
+      this.dialogText = staff;
+      this.dialog = true;
+    },
+  },
+
+
+
   props: {
     data: {
       type: Object,

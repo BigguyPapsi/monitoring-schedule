@@ -31,26 +31,8 @@
 
     <div v-else>
       <Nav />
-      <div
-        style="
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 50px;
-
-        "
-      >
-        <div>
-          <v-container>
-            <img
-              :src="schedule?.img_url"
-              alt="schedule"
-              style="width: 100%; border-radius: 12px"
-            />
-
-            <Viewall :data="schedule"/>
-          </v-container>
-        </div>
+      <div style="margin-bottom: 50px">
+        <Viewall :data="schedule" />
       </div>
       <Navbottom />
     </div>
@@ -165,4 +147,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  padding: 0px;
+  max-width: 500px;
+  background: #fffcf9;
+  margin-bottom: 60px;
+}
+</style>
