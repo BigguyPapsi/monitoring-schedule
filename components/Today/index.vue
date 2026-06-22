@@ -65,13 +65,11 @@
               <div>
                 <div>
                   <div>
-                    <v-chip color="#d4ffd4"
-                      ><span style="color: #028c00"
-                        ><v-icon>mdi-circle-medium</v-icon>Active</span
-                      ></v-chip
-                    >
+                    <v-chip color="#d4ffd4">
+                      <span style="color: #028c00;">
+                        <v-icon>mdi-circle-medium</v-icon>Active</span>
+                        </v-chip>
                   </div>
-
                   <div
                     style="
                       display: flex;

@@ -6,7 +6,7 @@
       </div>
       <div>
         <v-card
-        @click="openDialogData(staff)"
+          @click="openDialogData(staff)"
           elevation="0"
           v-for="(staff, i) in data?.allStaff?.staff"
           :key="i"
@@ -54,18 +54,42 @@
         </v-card>
 
         <div>
-          <v-dialog v-model="dialog" max-width="500px">
+          <v-dialog v-model="dialog" max-width="350px">
             <v-card>
-              <v-card-title class="headline">Staff on Duty</v-card-title>
-              <v-card-text>{{ dialogText }}</v-card-text>
+              <v-card-title class="headline" style="display: flex; justify-content: center;">
+              <h3>Staff on Duty</h3> 
+                </v-card-title>
+                <hr>
+              <!-- <v-card-text>{{ dialogText }}</v-card-text> -->
+              <v-card-text>
+                <div class="text-center mt-5">
+                  <h2>{{ dialogText?.name }}</h2>
+                </div>
+                <div class="text-center" style="font-size: 15px;">{{ dialogText?.description }}</div>
+                <div class="text-center">{{ dialogText?.tel }}</div>
+                <div class="text-center mt-5">Monitor Date</div>
+                <div
+                style="border: #949494 1px solid; padding: 2px; padding-left: 5px; margin-top: 5px; border-radius: 5px;"
+                  v-for="(item, index) in dialogText?.monitorDate"
+                  :key="index"
+                >
+                  <v-icon>mdi-calendar-account</v-icon> {{ item }}
+                </div>
+              </v-card-text>
+
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="dialog = false"
-                  >Close</v-btn
+                <v-btn
+                  color="error"
+                  elevation="0"
+                  block
+                  @click="dialog = false"
                 >
+                  Close
+                </v-btn>
               </v-card-actions>
             </v-card>
-            </v-dialog>
+          </v-dialog>
         </div>
       </div>
     </v-container>
@@ -74,7 +98,7 @@
 
 <script>
 export default {
-data() {
+  data() {
     return {
       dialog: false,
       dialogText: "",
@@ -87,8 +111,6 @@ data() {
       this.dialog = true;
     },
   },
-
-
 
   props: {
     data: {

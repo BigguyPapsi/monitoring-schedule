@@ -4,7 +4,6 @@
 
     <!-- BOTTOM NAVBAR -->
     <div class="bottom-navbar">
-      <!-- Schedule -->
       <div
         class="nav-item"
         :class="{ active: isActive('/') }"
@@ -14,7 +13,7 @@
         <span>Schedule</span>
       </div>
 
-      <!-- Staff -->
+
       <div
         class="nav-item"
         :class="{ active: isActive('/all-staff') }"
@@ -82,6 +81,5 @@ export default {
 .nav-item.active .v-icon {
   color: #0772BA;
 }
-
 
 </style>
