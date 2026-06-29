@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <div>
+      <div v-if="data?.today?.names?.length !== 0">
         <v-card
           v-for="(name, i) in data?.today?.names"
           :key="i"
@@ -85,6 +85,12 @@
           </v-card-text>
         </v-card>
       </div>
+
+      <div style="height: 200px; display: flex; align-items: center; justify-content: center;" v-else>
+      🏝️  ພັກວຽກ
+      </div>
+
+
     </v-container>
   </div>
 </template>

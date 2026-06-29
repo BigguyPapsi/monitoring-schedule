@@ -4,7 +4,7 @@
       <div class="title_style">
         <div><b>Tomorrow</b></div>
       </div>
-      <div>
+      <div v-if="data?.nextDay?.names?.length !== 0">
         <v-row>
           <v-col
             cols="6"
@@ -31,16 +31,41 @@
                     alt="profile"
                   />
                 </div>
-                <div style="display: flex; justify-content: center; padding-top: 8px;">
-                    <h3 style="color: #000">{{ name }}</h3>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 8px;
+                  "
+                >
+                  <h3 style="color: #000">{{ name }}</h3>
                 </div>
-                <div style="display: flex; justify-content: center; margin-bottom: 12px; font-size: 12px;">
-                    {{ i + 1 === 1 ? "Site Alpha" : "Site Beta" }}
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 12px;
+                    font-size: 12px;
+                  "
+                >
+                  {{ i + 1 === 1 ? "Site Alpha" : "Site Beta" }}
                 </div>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
+      </div>
+
+      <div
+        style="
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+        v-else
+      >
+        🏝️ ພັກວຽກ
       </div>
     </v-container>
   </div>
